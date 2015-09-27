@@ -1,8 +1,6 @@
 package lib
 
-import (
-	"fmt"
-)
+import ()
 
 type Channel struct {
 	clients []*Client
@@ -11,8 +9,9 @@ type Channel struct {
 }
 
 func (ch *Channel) Send(c *Client, text string) {
-	fmt.Println(ch)
 	for i := 0; i < len(ch.clients); i++ {
-		ch.clients[i].SendPrivMsg(c, ch.name, text)
+		if ch.clients[i] != c {
+			ch.clients[i].SendPrivMsg(c, ch.name, text)
+		}
 	}
 }

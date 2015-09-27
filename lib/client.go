@@ -80,13 +80,9 @@ func (c *Client) Join(prop string) {
 }
 
 func (c *Client) PrivMsg(prop string) {
-	fmt.Println(prop)
 	re := regexp.MustCompile("(#[a-zA-Z0-9]+) :(.*)")
 	prop_dec := re.FindAllStringSubmatch(prop, -1)
-	fmt.Println(prop_dec)
-	fmt.Println(prop_dec[0])
-
-	c.w.SendToChannel(c, prop_dec[0][0], prop_dec[0][1])
+	c.w.SendToChannel(c, prop_dec[0][1], prop_dec[0][2])
 }
 
 func (c *Client) Pong(prop string) {
